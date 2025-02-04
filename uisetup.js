@@ -32,6 +32,7 @@ export function setupStats() {
     const healthdisplay = document.createElement('div');
     const healthicon = document.createElement('img');
     const timer = document.createElement('div');
+    const versiondisplay = document.createElement('div');
     const redpoints = document.createElement('div');
     const redpointimg = document.createElement('img');
     const bluepoints = document.createElement('div');
@@ -59,6 +60,14 @@ export function setupStats() {
     timer.style.color = 'white';
     timer.style.fontSize = '24px';
     timer.style.zIndex = 100;
+    //
+    versiondisplay.style.position = 'absolute';
+    versiondisplay.style.top = '50px';
+    versiondisplay.style.left = '40px';
+    versiondisplay.style.color = 'white';
+    versiondisplay.style.fontSize = '24px';
+    versiondisplay.style.zIndex = 100;
+    versiondisplay.innerText = 'V1.1.2';
     //
     redpoints.style.position = 'absolute';
     redpoints.style.top = '40px';

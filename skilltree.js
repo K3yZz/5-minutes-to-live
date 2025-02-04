@@ -73,8 +73,9 @@ export const drawSkills = () => {
         play.innerText = "Play";
         play.onclick = () => startGame();
         play.style.position = "absolute";
-        play.style.left = "400px";
-        play.style.top = `500px`;
+        play.style.left = "50%";
+        play.style.top = "75%";
+        play.style.transform = "translate(-50%, -50%)";
         play.style.width = "100px";
         play.style.height = "50px";
         play.style.border = "2px solid white";
