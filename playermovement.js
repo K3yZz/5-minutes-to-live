@@ -18,10 +18,10 @@ const movePlayer = (dx, dy) => {
 };
 
 export const handleMovement = () => {
-    if (keys['w']) movePlayer(0, player.speed * -1);
-    if (keys['s']) movePlayer(0, player.speed);
-    if (keys['a']) movePlayer(player.speed * -1, 0);
-    if (keys['d']) movePlayer(player.speed, 0);
+    if (keys['w'] || keys['ArrowUp']) movePlayer(0, player.speed * -1);
+    if (keys['s'] || keys['ArrowDown']) movePlayer(0, player.speed);
+    if (keys['a'] || keys['ArrowLeft']) movePlayer(player.speed * -1, 0);
+    if (keys['d'] || keys['ArrowRight']) movePlayer(player.speed, 0);
 };
 
 export const checkCollision = () => {
