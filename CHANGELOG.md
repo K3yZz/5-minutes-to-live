@@ -1,3 +1,3 @@
-<details><summary>#1.0.0</summary>
+<details><summary><h2>1.0.0</h2></summary>
 - Release
 </details>
