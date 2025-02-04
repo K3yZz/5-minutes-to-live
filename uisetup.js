@@ -104,6 +104,7 @@ export function setupStats() {
     document.body.appendChild(healthdisplay);
     document.body.appendChild(healthicon);
     document.body.appendChild(timer);
+    document.body.appendChild(versiondisplay);
     document.body.appendChild(redpoints);
     document.body.appendChild(redpointimg);
     document.body.appendChild(bluepoints);
