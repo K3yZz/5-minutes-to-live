@@ -62,12 +62,12 @@ export function setupStats() {
     timer.style.zIndex = 100;
     //
     versiondisplay.style.position = 'absolute';
-    versiondisplay.style.top = '90%';
+    versiondisplay.style.top = '95%';
     versiondisplay.style.left = '10px';
     versiondisplay.style.color = 'white';
     versiondisplay.style.fontSize = '24px';
     versiondisplay.style.zIndex = 100;
-    versiondisplay.innerText = 'V1.1.3';
+    versiondisplay.innerText = 'V1.1.5';
     //
     redpoints.style.position = 'absolute';
     redpoints.style.top = '40px';
