@@ -7,10 +7,12 @@ export const player = {
     speed: 1,
     regen: false,
     regenvalue: 0,
+    enemysizedebuff: 1,
     redpoints: 0,
     redpointsmult: 1,
     bluepoints: 0,
     bluepointsmult: 1,
+    evolvepoints: 0,
     x: 275,
     y: 275,
     width: 50,
@@ -25,7 +27,7 @@ let bluepointslocked = true;
 export function updateHealth() {
     healthdisplay.innerHTML = Math.round(player.health * 100) / 100;
     if (player.health <= 0) {
-        gameOver();
+        gameOver("skill");
     }
 }
 

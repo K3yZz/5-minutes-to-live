@@ -1,4 +1,4 @@
-import { spaceandtime } from "./main.js";
+import { spaceandtime, gameOver } from "./main.js";
 import { player, updateTimer, updatepoints } from "./stats.js";
 import { spawnEnemies } from "./enemiessetup.js";
 
@@ -8,6 +8,9 @@ setInterval(() => {
     if (!spaceandtime.isPaused) {
     spaceandtime.time -= 1;
     updateTimer(spaceandtime.time);
+        if (spaceandtime.time <= 0) {
+            gameOver("evolve");
+        }
     }
 }, 1000); //default 1000
 

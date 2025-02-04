@@ -53,8 +53,8 @@ export const spawnEnemies = (num, type) => {
         enemies.push({
             x: x,
             y: y,
-            width: width,
-            height: height,
+            width: width * player.enemysizedebuff,
+            height: height * player.enemysizedebuff,
             color: type,
             speed: speed,
             damage: damage

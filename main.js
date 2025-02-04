@@ -4,6 +4,7 @@ import { drawEnemies, moveEnemies, spawnEnemies, enemies } from './enemiessetup.
 import { updateHealth, player, updatepoints } from './stats.js';
 import { drawSkills } from './skilltree.js';
 import { startintervals } from './interval.js';
+import { drawEvolve } from './evolve.js';
 //*----------------------------------------------------------------------------------------------------------------
 export const canvas = setupCanvas();
 export const ctx = canvas.getContext('2d');
@@ -62,10 +63,15 @@ enemies.splice(0, enemies.length);
 spawnEnemies(5, "red");
 }
 
-export function gameOver() {
+export function gameOver(type) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     spaceandtime.isPaused = true;
     player.health = 0;
+    if (type == "skill") {
     drawSkills();
+    } else if (type == "evolve") {
+        player.evolvepoints += 1;
+        drawEvolve();
+    }
 }
 //*----------------------------------------------------------------------------------------------------------------

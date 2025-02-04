@@ -9,7 +9,7 @@ const skills = [
     {name: "Passive regen", costtype: "Blue points", cost: 10, value: 0.01, max: 10, locked: false, timesbought: 0, description: "Regenerates 0.01 health per second"},
     {name: "Health+", costtype: "Red points", cost: 100, value: 5, max: 2, locked: true, timesbought: 0, description: "Increases your health by 5"},
     {name: "x2 Blue points", costtype: "Blue points", cost: 30, value: 1, max: 1, locked: true, timesbought: 0, description: "Doubles the amount of bluepoints you get"},
-    {name: "Nerf enemies", costtype: "Blue points", cost: 50, value: 1, max: 1, locked: true, timesbought: 0, description: "Placeholder"},
+    {name: "Nerf enemies", costtype: "Blue points", cost: 50, value: 1, max: 1, locked: true, timesbought: 0, description: "Decrease enemy size by 15%"},
     {name: "placeholder", costtype: "", cost: 0, value: 0, max: 0, locked: true, timesbought: 0, description: "Locked"},
 ];
 
@@ -118,6 +118,10 @@ export function purchaseSkill(skill) {
             case "-Size":
                 player.width -= skill.value * 5;
                 player.height -= skill.value * 5;
+                const enemynerfskill = skills.find(s => s.name === "Nerf enemies");
+                if (enemynerfskill && skill.timesbought >= skill.max - 1) {
+                enemynerfskill.locked = false;
+                }
                 break;
             case "x2 Red points":
                 player.redpointsmult += 1;
@@ -146,6 +150,9 @@ export function purchaseSkill(skill) {
                 break;
             case "x2 Blue points":
                 player.bluepointsmult += 1;
+                break;
+            case "Nerf enemies":
+                player.enemysizedebuff -= .8;
                 break;
         }
         player.bluepoints -= skill.cost;

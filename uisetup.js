@@ -16,8 +16,8 @@ export function setupCanvas() {
 export function setupBackdrop() {
     const backdrop = document.createElement('div');
     // backdrop
-    backdrop.style.width = '100%';
-    backdrop.style.height = '100%';
+    backdrop.style.width = '100vw';
+    backdrop.style.height = '100vh';
     backdrop.style.position = 'fixed';
     backdrop.style.backgroundColor = 'rgba(245, 3, 3, 0.5)';
     backdrop.style.top = 0;
@@ -26,7 +26,9 @@ export function setupBackdrop() {
     backdrop.style.justifyContent = 'center';
     backdrop.style.alignItems = 'center';
     backdrop.style.zIndex = -20;
+    backdrop.id = "backdrop";
     document.body.appendChild(backdrop);
+    return backdrop;
 }
 export function setupStats() {
     const healthdisplay = document.createElement('div');
@@ -67,7 +69,7 @@ export function setupStats() {
     versiondisplay.style.color = 'white';
     versiondisplay.style.fontSize = '24px';
     versiondisplay.style.zIndex = 100;
-    versiondisplay.innerText = 'V1.1.5';
+    versiondisplay.innerText = 'V1.2.5 (part1)';
     //
     redpoints.style.position = 'absolute';
     redpoints.style.top = '40px';
