@@ -24,7 +24,7 @@ setInterval(() => {
 setInterval(() => {
     if (!spaceandtime.isPaused && spaceandtime.time <= 250) {
     spawnEnemies(1, "blue");
-    player.bluepoints += 1;
+    player.bluepoints += 1 * player.bluepointsmult;
     updatepoints();
     }
 }, 3500 * 2);

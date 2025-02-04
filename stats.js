@@ -10,6 +10,7 @@ export const player = {
     redpoints: 0,
     redpointsmult: 1,
     bluepoints: 0,
+    bluepointsmult: 1,
     x: 275,
     y: 275,
     width: 50,
