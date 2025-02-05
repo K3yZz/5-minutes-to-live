@@ -1,4 +1,6 @@
-import { canvas, ctx } from "./main.js";
+import { currentfps } from "./debug.js";
+import { canvas, ctx, spaceandtime } from "./main.js";
+import { player } from "./stats.js";
 
 export function setupCanvas() {
     const canvas = document.createElement('canvas');
@@ -72,7 +74,7 @@ export function setupStats() {
     versiondisplay.style.fontSize = '24px';
     versiondisplay.style.zIndex = 100;
     //! MAKE SURE TO CHANGE
-    versiondisplay.innerText = 'V1.2.7';
+    versiondisplay.innerText = 'V1.2.8';
     //! MAKE SURE TO CHANGE
     //
     redpoints.style.position = 'absolute';
@@ -135,6 +137,39 @@ export function setupStats() {
     document.body.appendChild(evolvepoints);
     document.body.appendChild(evolvepointsimg);
     return { timer, healthdisplay, redpoints, bluepoints, bluepointimg, evolvepoints, evolvepointsimg };
+}
+export function showDebug() {
+    const Debug = document.createElement('div');
+    const Debugmessage = document.createElement('p');
+    //
+    Debug.style.position = 'absolute';
+    Debug.style.left = '80%';
+    Debug.style.top = '10%';
+    Debug.style.backgroundColor = '#3b3b3b';
+    Debug.style.border = '1px solid white';
+    Debug.style.width = '200px';
+    Debug.style.height = '300px';
+    Debug.style.zIndex = 100;
+    //
+    const status = `
+    IsPaused: ${spaceandtime.isPaused}
+    offtab: ${spaceandtime.offtab}
+    Spawnrate: ${spaceandtime.spawnrate}
+    Player X: ${player.x}
+    Player Y: ${player.y}
+    Player Speed: ${player.speed}
+    Player Regen: ${player.regen}
+    Player Regen value: ${player.regenvalue}
+    Player MaxHP: ${player.maxhealth}
+    Enemy count: ${spaceandtime.enemycount}
+    FPS: ${currentfps}
+    `;
+    //
+    Debugmessage.style.color ='white';
+    Debugmessage.innerText = status;
+    //
+    Debug.appendChild(Debugmessage);
+    document.body.appendChild(Debug);
 }
 export const drawFloor = () => {
     const tileSize = 50;

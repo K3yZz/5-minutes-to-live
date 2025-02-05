@@ -1,4 +1,4 @@
-import { setupCanvas, setupBackdrop, setupStats, drawFloor } from './uisetup.js';
+import { setupCanvas, setupBackdrop, setupStats, drawFloor, showDebug } from './uisetup.js';
 import { drawPlayer, handleMovement, checkCollision } from './playermovement.js';
 import { drawEnemies, moveEnemies, spawnEnemies, enemies } from './enemiessetup.js';
 import { updateHealth, player, updatepoints } from './stats.js';
@@ -8,6 +8,17 @@ import { drawEvolve, incomebonus } from './evolve.js';
 //*----------------------------------------------------------------------------------------------------------------
 export const canvas = setupCanvas();
 export const ctx = canvas.getContext('2d');
+
+export let spaceandtime = {
+    isPaused: false,
+    offtab: false,
+    time: 300,
+    second: 1000,
+    spawnrate: 3500,
+    enemycount: 0,
+    debug: false,
+};
+
 document.addEventListener('DOMContentLoaded', (event) => {
     startGame();
     setupBackdrop();
@@ -23,12 +34,6 @@ document.addEventListener("visibilitychange", () => {
         spaceandtime.offtab = false;
     }
 });
-
-export let spaceandtime = {
-    isPaused: false,
-    offtab: false,
-    time: 300,
-};
 
 //*----------------------------------------------------------------------------------------------------------------
 const update = () => {
@@ -62,6 +67,7 @@ export function startGame(type) {
     //
     spaceandtime.time = 300;
     spaceandtime.isPaused = false;
+    spaceandtime.spawnrate = 3500;
     //
     player.health = player.maxhealth;
     player.x = 275;
@@ -69,12 +75,15 @@ export function startGame(type) {
     player.redpointsmult *= incomebonus;
     player.bluepointsmult *= incomebonus;
     //
+    spaceandtime.enemycount = 0;
+    //
     updatepoints();
     updateHealth();
     runGame();
     //
     enemies.splice(0, enemies.length);
     spawnEnemies(5, "red");
+    spaceandtime.enemycount += 5;
     if (type == "evolve") {
         player.maxhealth = 3;
         player.health = player.maxhealth;
