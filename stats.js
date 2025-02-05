@@ -20,9 +20,10 @@ export const player = {
     color: 'black',
 };
 
-const { timer, healthdisplay, redpoints, bluepoints, bluepointimg } = setupStats();
+const { timer, healthdisplay, redpoints, bluepoints, bluepointimg, evolvepoints, evolvepointsimg } = setupStats();
 
 let bluepointslocked = true;
+let evolvepointslocked = true;
 
 export function updateHealth() {
     healthdisplay.innerHTML = Math.round(player.health * 100) / 100;
@@ -42,6 +43,12 @@ export function updatepoints() {
         bluepointimg.style.display = "block";
         bluepoints.innerHTML = player.bluepoints;
         bluepointslocked = false;
+    }
+    if (player.evolvepoints > 0 || !evolvepointslocked) {
+        evolvepoints.style.display = "block";
+        evolvepointsimg.style.display = "block";
+        evolvepoints.innerHTML = player.evolvepoints;
+        evolvepointslocked = false;
     }
 }
 

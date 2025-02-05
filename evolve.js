@@ -1,9 +1,11 @@
-import { player } from "./stats.js";
-import { canvas, ctx } from "./main.js";
+import { updateHealth, player, updatepoints } from "./stats.js";
+import { canvas, ctx, startGame } from "./main.js";
 
 const traits = [
-    { name: "---", costtype: "evolve point", cost: 1, value: 1, max: 1, timesbought: 0, description: "placeholder" },
+    { name: "2x income", costtype: "evolve point", cost: 1, value: 1, max: 1, timesbought: 0, description: "2x blue and red points" },
 ];
+
+export let incomebonus = 1;
 
 export const drawEvolve = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -35,6 +37,12 @@ export const drawEvolve = () => {
         button.style.fontFamily = "MONOFONT";
         button.innerText = trait.name;
 
+        if (trait.timesbought >= trait.max) {
+            button.style.borderColor = "gold";
+        } else {
+            button.style.borderColor = "white";
+        }
+
         button.onmouseover = () => {
             button.style.fontSize = "12px";
             button.style.backgroundColor = "#697565";
@@ -47,7 +55,7 @@ export const drawEvolve = () => {
             button.innerText = trait.name;
         };
 
-        button.onclick = () => purchasetrait(trait);
+        button.onclick = () => purchaseTrait(trait);
 
         button.style.position = "absolute";
         button.style.top = `${100 + Math.floor(i / 5) * 120}px`;
@@ -57,14 +65,39 @@ export const drawEvolve = () => {
 
         document.body.appendChild(button);
     });
+    const play = document.createElement("button");
+            play.innerText = "Play";
+            play.onclick = () => startGame("evolve");
+            play.style.position = "absolute";
+            play.style.left = "50%";
+            play.style.top = "75%";
+            play.style.transform = "translate(-50%, -50%)";
+            play.style.width = "100px";
+            play.style.height = "50px";
+            play.style.border = "2px solid white";
+            play.style.borderRadius = "20px";
+            play.style.color = "white";
+            play.style.fontSize = "24px";
+            play.style.fontFamily = "MONOFONT";
+            play.style.backgroundColor = "#3C3D37";
+            play.onmouseover = () => {
+                play.style.backgroundColor = "#697565";
+            };
+            play.onmouseout = () => {
+                play.style.backgroundColor = "#3C3D37";
+            };
+            play.className = "evolvetree-button";
+            document.body.appendChild(play);
 };
 
 export function purchaseTrait(trait) {
-    if (trait.timesbought < trait.max) {
+    if (trait.timesbought < trait.max && trait.cost <= player.evolvepoints) {
 
         switch (trait.name) {
-            case "idk":
-                //stuff
+            case "2x income":
+                incomebonus = 2;
+                player.redpointsmult *= incomebonus;
+                player.bluepointsmult *= incomebonus;
                 break;
             default:
                 break;
@@ -73,7 +106,7 @@ export function purchaseTrait(trait) {
         trait.cost = Math.ceil(trait.cost * 1.15);
         trait.timesbought++;
         updateHealth();
-        drawtraits();
         updatepoints();
+        drawEvolve();
     }
 }

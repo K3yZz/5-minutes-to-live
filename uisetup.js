@@ -39,6 +39,8 @@ export function setupStats() {
     const redpointimg = document.createElement('img');
     const bluepoints = document.createElement('div');
     const bluepointimg = document.createElement('img');
+    const evolvepoints = document.createElement('div');
+    const evolvepointsimg = document.createElement('img');
     //
     healthdisplay.style.position = 'absolute';
     healthdisplay.style.top = '10px';
@@ -69,7 +71,7 @@ export function setupStats() {
     versiondisplay.style.color = 'white';
     versiondisplay.style.fontSize = '24px';
     versiondisplay.style.zIndex = 100;
-    versiondisplay.innerText = 'V1.2.5 (part1)';
+    versiondisplay.innerText = 'V1.2.5 (part 2)';
     //
     redpoints.style.position = 'absolute';
     redpoints.style.top = '40px';
@@ -103,6 +105,23 @@ export function setupStats() {
     bluepointimg.height = 50;
     bluepointimg.style.display = 'none';
     //
+    evolvepoints.style.position = 'absolute';
+    evolvepoints.style.top = '100px';
+    evolvepoints.style.left = '40px';
+    evolvepoints.style.color = 'white';
+    evolvepoints.style.fontSize = '24px';
+    evolvepoints.style.zIndex = 100;
+    evolvepoints.style.display = 'none';
+    //
+    evolvepointsimg.style.position = 'absolute';
+    evolvepointsimg.style.top = '90px';
+    evolvepointsimg.style.left = '-5px';
+    evolvepointsimg.style.zIndex = 100;
+    evolvepointsimg.src = "assets/bluepoint.png";
+    evolvepointsimg.width = 50;
+    evolvepointsimg.height = 50;
+    evolvepointsimg.style.display = 'none';
+    //
     document.body.appendChild(healthdisplay);
     document.body.appendChild(healthicon);
     document.body.appendChild(timer);
@@ -111,7 +130,9 @@ export function setupStats() {
     document.body.appendChild(redpointimg);
     document.body.appendChild(bluepoints);
     document.body.appendChild(bluepointimg);
-    return { timer, healthdisplay, redpoints, bluepoints, bluepointimg };
+    document.body.appendChild(evolvepoints);
+    document.body.appendChild(evolvepointsimg);
+    return { timer, healthdisplay, redpoints, bluepoints, bluepointimg, evolvepoints, evolvepointsimg };
 }
 export const drawFloor = () => {
     const tileSize = 50;

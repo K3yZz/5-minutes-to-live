@@ -124,7 +124,7 @@ export function purchaseSkill(skill) {
                 }
                 break;
             case "x2 Red points":
-                player.redpointsmult += 1;
+                player.redpointsmult *= 2;
                 const bluepointsSkill = skills.find(s => s.name === "x2 Blue points");
                 if (bluepointsSkill) {
                 bluepointsSkill.locked = false;
@@ -149,7 +149,7 @@ export function purchaseSkill(skill) {
                 player.regenvalue += skill.value;
                 break;
             case "x2 Blue points":
-                player.bluepointsmult += 1;
+                player.bluepointsmult *= 2;
                 break;
             case "Nerf enemies":
                 player.enemysizedebuff -= .8;
