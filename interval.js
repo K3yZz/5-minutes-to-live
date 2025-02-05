@@ -2,6 +2,14 @@ import { spaceandtime, gameOver } from "./main.js";
 import { player, updateTimer, updatepoints } from "./stats.js";
 import { spawnEnemies } from "./enemiessetup.js";
 
+let spawnrate = 3500;
+let second = 1000;
+
+let Redenemy;
+let Blueenemy;
+let Yellowenemy;
+let Orangeenemy;
+
 export function startintervals() {
 //timer
 setInterval(() => {
@@ -12,47 +20,48 @@ setInterval(() => {
             gameOver("evolve");
         }
     }
-}, 1000); //default 1000
-
-//spawn redenemies
-setInterval(() => {
-    if (!spaceandtime.isPaused && !spaceandtime.offtab) {
-    spawnEnemies(1, "red");
-    player.redpoints += 1 * player.redpointsmult;
-    updatepoints();
-    }
-}, 3500);
-
-//spawn blueenemies
-setInterval(() => {
-    if (!spaceandtime.isPaused && spaceandtime.time <= 250 && !spaceandtime.offtab) {
-    spawnEnemies(1, "blue");
-    player.bluepoints += 1 * player.bluepointsmult;
-    updatepoints();
-    }
-}, 3500 * 2);
-
-//spawn yellowenemies
-setInterval(() => {
-    if (!spaceandtime.isPaused && spaceandtime.time <= 200 && !spaceandtime.offtab) {
-        spawnEnemies(1, "yellow");
-        //player.yellowpoints += 1;
-        //updatepoints();
-    }
-}, 3500 * 3);
-
-//spawn orangeenemies
-setInterval(() => {
-    if (!spaceandtime.isPaused && spaceandtime.time <= 150 && !spaceandtime.offtab) {
-    spawnEnemies(1, "orange");
-    }
-}, 3500 * 4);
+}, second);
 
 //regen
 setInterval(() => {
     if (!spaceandtime.isPaused && player.regen && !spaceandtime.offtab) {
     player.health += Math.min(player.regenvalue, player.maxhealth - player.health)
     }
-}, 1000);
+}, second);
 
+//Redenemy
+setInterval(() => {
+    spawnrate = Math.max(100, spawnrate - 100);
+    clearInterval(Redenemy);
+
+    Redenemy = setInterval(() => {
+        if (!spaceandtime.isPaused && !spaceandtime.offtab) {
+            spawnEnemies(1, "red");
+            player.redpoints += 1 * player.redpointsmult;
+            updatepoints();
+        }
+    }, spawnrate);
+}, 10000);
+
+Blueenemy = setInterval(() => {
+    if (!spaceandtime.isPaused && spaceandtime.time <= 250 && !spaceandtime.offtab) {
+    spawnEnemies(1, "blue");
+    player.bluepoints += 1 * player.bluepointsmult;
+    updatepoints();
+    }
+}, spawnrate * 2);
+
+Yellowenemy = setInterval(() => {
+    if (!spaceandtime.isPaused && spaceandtime.time <= 200 && !spaceandtime.offtab) {
+        spawnEnemies(1, "yellow");
+        //player.yellowpoints += 1;
+        //updatepoints();
+    }
+}, spawnrate * 3);
+
+Orangeenemy = setInterval(() => {
+    if (!spaceandtime.isPaused && spaceandtime.time <= 150 && !spaceandtime.offtab) {
+    spawnEnemies(1, "orange");
+    }
+}, spawnrate * 4);
 }

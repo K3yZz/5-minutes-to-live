@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
       spaceandtime.offtab = true;
-      alert("the exploit twas patched");
+      alert("the exploit twas patched (Warning: do not hover over the tab it breaks)");
     } else {
         spaceandtime.offtab = false;
     }
