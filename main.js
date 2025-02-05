@@ -15,8 +15,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
     startintervals();
 });
 
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      spaceandtime.offtab = true;
+      alert("the exploit twas patched");
+    } else {
+        spaceandtime.offtab = false;
+    }
+});
+
 export let spaceandtime = {
     isPaused: false,
+    offtab: false,
     time: 300,
 };
 
@@ -40,7 +50,7 @@ const update = () => {
 };
 
 const runGame = () => {
-    if (!spaceandtime.isPaused) {
+    if (!spaceandtime.isPaused && !spaceandtime.offtab) {
         update();
         requestAnimationFrame(runGame);
     }
