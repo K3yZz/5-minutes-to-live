@@ -5,6 +5,7 @@ import { updateHealth, player, updatepoints } from './stats.js';
 import { drawSkills } from './skilltree.js';
 import { startintervals } from './interval.js';
 import { drawEvolve, incomebonus } from './evolve.js';
+import { fixTabExploit } from './debug.js';
 //*----------------------------------------------------------------------------------------------------------------
 export const canvas = setupCanvas();
 export const ctx = canvas.getContext('2d');
@@ -16,7 +17,7 @@ export let spaceandtime = {
     second: 1000,
     spawnrate: 3500,
     enemycount: 0,
-    debug: false,
+    debug: true,
 };
 
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -27,12 +28,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      spaceandtime.offtab = true;
-      alert("the exploit twas patched (Warning: do not hover over the tab it breaks)");
-    } else {
+    if (document.hidden) { 
+        spaceandtime.offtab = true;
+        restart = true;
+     } 
+    else { 
         spaceandtime.offtab = false;
-    }
+        fixTabExploit();
+     }
 });
 
 //*----------------------------------------------------------------------------------------------------------------
@@ -54,7 +57,7 @@ const update = () => {
     }
 };
 
-const runGame = () => {
+export const runGame = () => {
     if (!spaceandtime.isPaused && !spaceandtime.offtab) {
         update();
         requestAnimationFrame(runGame);

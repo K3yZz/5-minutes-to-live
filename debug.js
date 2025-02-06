@@ -1,4 +1,4 @@
-import { spaceandtime } from './main.js';
+import { spaceandtime, runGame } from './main.js';
 import { showDebug } from './uisetup.js';
 
 setInterval(() => {
@@ -34,3 +34,13 @@ function startFPSCounter() {
 }
 
 startFPSCounter();
+
+
+export let restart = false;
+
+export function fixTabExploit() {
+    if (restart) {
+        runGame();
+        restart = false;
+    }
+}
