@@ -2,10 +2,13 @@ import { spaceandtime, gameOver } from "./main.js";
 import { player, updateTimer, updatepoints } from "./stats.js";
 import { spawnEnemies } from "./enemiessetup.js";
 
+let Redenemy, Blueenemy, Yellowenemy, Orangeenemy, Greenenemy;
+
+
 export function startintervals() {
 
     // Timer
-    const timerInterval = setInterval(() => {
+    setInterval(() => {
         if (!spaceandtime.isPaused && !spaceandtime.offtab) {
             spaceandtime.time -= 1;
             updateTimer(spaceandtime.time);
@@ -16,7 +19,7 @@ export function startintervals() {
     }, spaceandtime.second);
 
     // Regen
-    const regenInterval = setInterval(() => {
+    setInterval(() => {
         if (!spaceandtime.isPaused && player.regen && !spaceandtime.offtab) {
             player.health += Math.min(player.regenvalue, player.maxhealth - player.health);
         }
@@ -28,7 +31,7 @@ export function startintervals() {
             spaceandtime.spawnrate = Math.max(1000, spaceandtime.spawnrate - 10);
             clearInterval(Redenemy);
 
-            const RedenemyInterval = setInterval(() => {
+            Redenemy = setInterval(() => {
                 if(!spaceandtime.isPaused && !spaceandtime.offtab) {
                     spawnEnemies(1, "red");
                     spaceandtime.enemycount += 1;
@@ -40,7 +43,7 @@ export function startintervals() {
     }, 10000);
 
     // Blue Enemy
-    const BlueenemyInterval = setInterval(() => {
+    Blueenemy = setInterval(() => {
         if (!spaceandtime.isPaused && spaceandtime.time <= 250 && !spaceandtime.offtab) {
             spawnEnemies(1, "blue");
             spaceandtime.enemycount += 1;
@@ -50,7 +53,7 @@ export function startintervals() {
     }, spaceandtime.spawnrate * 2);
 
     // Yellow Enemy
-    const YellowenemyInterval = setInterval(() => {
+    Yellowenemy = setInterval(() => {
         if (!spaceandtime.isPaused && spaceandtime.time <= 200 && !spaceandtime.offtab) {
             spawnEnemies(1, "yellow");
             spaceandtime.enemycount += 1;
@@ -58,14 +61,14 @@ export function startintervals() {
     }, spaceandtime.spawnrate * 3);
 
     // Orange Enemy
-    const OrangeenemyInterval = setInterval(() => {
+    Orangeenemy = setInterval(() => {
         if (!spaceandtime.isPaused && spaceandtime.time <= 150 && !spaceandtime.offtab) {
             spawnEnemies(1, "orange");
             spaceandtime.enemycount += 1;
         }
     }, spaceandtime.spawnrate * 4);
 
-    const GreenenemyInterval = setInterval(() => {
+    Greenenemy = setInterval(() => {
         if (!spaceandtime.isPaused && spaceandtime.time <= 100 && !spaceandtime.offtab) {
             spawnEnemies(1, "green");
             spaceandtime.enemycount += 1;
