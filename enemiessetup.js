@@ -33,22 +33,32 @@ export const spawnEnemies = (num, type) => {
         let width = 25;
         let height = 25;
         let damage = 1;
-        if (type == "red") {
-            speed = .5;
-        } else if (type == "blue") {
-            speed = 2;
-            damage = 0.75;
-        } else if (type == "yellow") {
-            speed = 2.5;
-            width = 35;
-            height = 35;
-            damage = 0.25;  
-        } else if (type == "orange") {
-            speed = .2;
-            width = 50;
-            height = 50;
-            damage = 2;
-        }
+        switch (type) {
+            case "red":
+                speed = .5;
+                break;
+            case "blue":
+                speed = 2;
+                damage = 0.5;
+                break;
+            case "yellow":
+                speed = 2.5;
+                width = 35;
+                height = 35;
+                damage = 0.25; 
+                break;
+            case "orange":
+                speed = .3;
+                width = 50;
+                height = 50;
+                damage = 2;
+                break;
+            case "green":
+                speed = 0.1;
+                width = 70;
+                height = 70;
+                damage = 3;
+            }
 
         enemies.push({
             x: x,

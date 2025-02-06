@@ -74,7 +74,7 @@ export function setupStats() {
     versiondisplay.style.fontSize = '24px';
     versiondisplay.style.zIndex = 100;
     //! MAKE SURE TO CHANGE
-    versiondisplay.innerText = 'V1.2.9';
+    versiondisplay.innerText = 'V1.3.0';
     //! MAKE SURE TO CHANGE
     //
     redpoints.style.position = 'absolute';
@@ -163,6 +163,7 @@ export function showDebug() {
     Player MaxHP: ${player.maxhealth}
     Enemy count: ${spaceandtime.enemycount}
     FPS: ${currentfps}
+    Restart: ${spaceandtime.restart}
     `;
     //
     Debugmessage.style.color ='white';

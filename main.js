@@ -13,11 +13,12 @@ export const ctx = canvas.getContext('2d');
 export let spaceandtime = {
     isPaused: false,
     offtab: false,
+    restart: false,
     time: 300,
     second: 1000,
     spawnrate: 3500,
     enemycount: 0,
-    debug: true,
+    debug: false,
 };
 
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -30,7 +31,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 document.addEventListener("visibilitychange", () => {
     if (document.hidden) { 
         spaceandtime.offtab = true;
-        restart = true;
+        spaceandtime.restart = true;
      } 
     else { 
         spaceandtime.offtab = false;
@@ -57,10 +58,12 @@ const update = () => {
     }
 };
 
+export let rungameframe;
+
 export const runGame = () => {
     if (!spaceandtime.isPaused && !spaceandtime.offtab) {
         update();
-        requestAnimationFrame(runGame);
+        rungameframe = requestAnimationFrame(runGame);
     }
 };
 //*----------------------------------------------------------------------------------------------------------------

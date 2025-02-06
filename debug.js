@@ -1,4 +1,4 @@
-import { spaceandtime, runGame } from './main.js';
+import { spaceandtime, runGame, rungameframe } from './main.js';
 import { showDebug } from './uisetup.js';
 
 setInterval(() => {
@@ -8,7 +8,7 @@ setInterval(() => {
 }, 1000);
 
 let fps, fpsInterval, startTime, now, then, elapsed;
-export let currentfps = 0;
+export const currentfps = 0;
 
 function startFPSCounter() {
     fpsInterval = 1000 / 60;
@@ -36,11 +36,10 @@ function startFPSCounter() {
 startFPSCounter();
 
 
-export let restart = false;
-
 export function fixTabExploit() {
-    if (restart) {
+    if (spaceandtime.restart) {
+        cancelAnimationFrame(rungameframe);
         runGame();
-        restart = false;
+        spaceandtime.restart = false;
     }
 }
