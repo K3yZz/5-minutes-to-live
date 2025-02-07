@@ -105,6 +105,14 @@ export function startGame(type) {
         player.height = 50;
         player.width = 50;
         player.enemysizedebuff = 1;
+        skills.forEach(skill => {
+            skill.locked = false;
+            skill.timesbought = 0;
+            skill.price = skill.baseprice;
+            if (skill.name === "Health+" || skill.name === "x2 Blue points" || skill.name === "Nerf enemies") {
+            skill.locked = true;
+            }
+        });
         const backdrop = document.getElementById('backdrop');
         backdrop.style.backgroundColor = 'rgba(245, 3, 3, 0.5)';
         backdrop.style.backgroundImage = '';
