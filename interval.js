@@ -1,8 +1,10 @@
 import { spaceandtime, gameOver } from "./main.js";
 import { player, updateTimer, updatepoints } from "./stats.js";
 import { spawnEnemies } from "./enemiessetup.js";
+import { spawnAllies } from "./allysetup.js";
 
 let Redenemy, Blueenemy, Yellowenemy, Orangeenemy, Greenenemy;
+let friendlyally;
 
 
 export function startintervals() {
@@ -74,4 +76,10 @@ export function startintervals() {
             spaceandtime.enemycount += 1;
         }
     }, spaceandtime.spawnrate * 5);
+
+    friendlyally = setInterval(() => {
+        if (player.allysunlocked && !spaceandtime.isPaused && !spaceandtime.offtab) {
+            spawnAllies(1, "red");
+        }
+    }, 5000);
 }

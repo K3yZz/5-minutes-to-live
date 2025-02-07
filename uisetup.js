@@ -1,3 +1,5 @@
+//uisetup.js
+
 import { currentfps } from "./debug.js";
 import { canvas, ctx, spaceandtime } from "./main.js";
 import { player } from "./stats.js";
@@ -17,16 +19,12 @@ export function setupCanvas() {
 }
 export function setupBackdrop() {
     const backdrop = document.createElement('div');
-    // backdrop
     backdrop.style.width = '100vw';
     backdrop.style.height = '100vh';
     backdrop.style.position = 'fixed';
     backdrop.style.backgroundColor = 'rgba(245, 3, 3, 0.5)';
     backdrop.style.top = 0;
     backdrop.style.left = 0;
-    backdrop.style.display = 'flex';
-    backdrop.style.justifyContent = 'center';
-    backdrop.style.alignItems = 'center';
     backdrop.style.zIndex = -20;
     backdrop.id = "backdrop";
     document.body.appendChild(backdrop);
@@ -74,7 +72,7 @@ export function setupStats() {
     versiondisplay.style.fontSize = '24px';
     versiondisplay.style.zIndex = 100;
     //! MAKE SURE TO CHANGE
-    versiondisplay.innerText = 'V1.3.0';
+    versiondisplay.innerText = 'V1.4.0';
     //! MAKE SURE TO CHANGE
     //
     redpoints.style.position = 'absolute';
@@ -121,7 +119,7 @@ export function setupStats() {
     evolvepointsimg.style.top = '90px';
     evolvepointsimg.style.left = '-5px';
     evolvepointsimg.style.zIndex = 100;
-    evolvepointsimg.src = "assets/bluepoint.png";
+    evolvepointsimg.src = "assets/evolvepoint.png";
     evolvepointsimg.width = 50;
     evolvepointsimg.height = 50;
     evolvepointsimg.style.display = 'none';

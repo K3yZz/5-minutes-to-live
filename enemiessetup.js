@@ -58,6 +58,7 @@ export const spawnEnemies = (num, type) => {
                 width = 70;
                 height = 70;
                 damage = 3;
+                break;
             }
 
         enemies.push({

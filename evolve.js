@@ -2,10 +2,9 @@ import { updateHealth, player, updatepoints } from "./stats.js";
 import { canvas, ctx, startGame } from "./main.js";
 
 const traits = [
-    { name: "2x income", costtype: "evolve point", cost: 1, value: 1, max: 1, timesbought: 0, description: "2x blue and red points" },
+    { name: "2x income", cost: 1, value: 1, max: 1, timesbought: 0, description: "2x blue and red points" },
+    { name: "Allies", cost: 2, value: 1, max: 1, timesbought: 0, description: "Spawn allies every 5 seconds to defend you"},
 ];
-
-export let incomebonus = 1;
 
 export const drawEvolve = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -14,14 +13,15 @@ export const drawEvolve = () => {
     const backdrop = document.getElementById('backdrop');
     backdrop.style.backgroundColor = 'black';
 
-    //fix later
-    //backdrop.style.backgroundImage = `
-    //radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-    //radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
-    //radial-gradient(white, rgba(10, 8, 8, 0.15) transparent 40px),
-   //radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px)`;
-    //backdrop.style.backgroundSize = '550px 550px, 350px 350px, 250px 250px, 150px 150px';
-    //backdrop.style.backgroundPosition = '0 0, 40px 60px, 130px 270px, 70px 100px';
+    backdrop.style.backgroundImage = `
+    radial-gradient(circle, white, rgba(255,255,255,0.2) 2px, transparent 40px),
+    radial-gradient(circle, white, rgba(255,255,255,0.15) 1px, transparent 30px),
+    radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 35px),
+    radial-gradient(circle, rgba(255,255,255,0.4), rgba(255,255,255,0.1) 2px, transparent 30px)`;
+    
+    backdrop.style.backgroundSize = '550px 550px, 350px 350px, 250px 250px, 150px 150px';
+    backdrop.style.backgroundPosition = '0 0, 40px 60px, 130px 270px, 70px 100px';
+
 
     document.querySelectorAll('.evolvetree-button').forEach(button => button.remove());
 
@@ -46,7 +46,7 @@ export const drawEvolve = () => {
         button.onmouseover = () => {
             button.style.fontSize = "12px";
             button.style.backgroundColor = "#697565";
-            button.innerText = `${trait.cost} ${trait.costtype}\n${trait.description}\n${trait.timesbought}/${trait.max}`;
+            button.innerText = `${trait.cost} Evolve points\n${trait.description}\n${trait.timesbought}/${trait.max}`;
         };
 
         button.onmouseout = () => {
@@ -90,14 +90,19 @@ export const drawEvolve = () => {
             document.body.appendChild(play);
 };
 
+export let permmult = 1;
+
 export function purchaseTrait(trait) {
     if (trait.timesbought < trait.max && trait.cost <= player.evolvepoints) {
 
         switch (trait.name) {
             case "2x income":
-                incomebonus = 2;
-                player.redpointsmult *= incomebonus;
-                player.bluepointsmult *= incomebonus;
+                permmult = 2;
+                player.redpointsmult *= permmult;
+                player.bluepointsmult *= permmult;
+                break;
+            case "Allies":
+                player.allysunlocked = true;
                 break;
             default:
                 break;

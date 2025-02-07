@@ -1,4 +1,5 @@
 import { spaceandtime, runGame, rungameframe } from './main.js';
+import { player } from './stats.js';
 import { showDebug } from './uisetup.js';
 
 setInterval(() => {

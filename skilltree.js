@@ -152,7 +152,7 @@ export function purchaseSkill(skill) {
                 player.bluepointsmult *= 2;
                 break;
             case "Nerf enemies":
-                player.enemysizedebuff -= .8;
+                player.enemysizedebuff -= .15;
                 break;
         }
         player.bluepoints -= skill.cost;

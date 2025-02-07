@@ -1,6 +1,7 @@
 import { canvas, ctx } from './main.js';
 import { player } from './stats.js';
 import { enemies } from './enemiessetup.js';
+import { friends } from './allysetup.js';
 
 export const keys = {};
 
@@ -24,7 +25,7 @@ export const handleMovement = () => {
     if (keys['d'] || keys['ArrowRight']) movePlayer(player.speed, 0);
 };
 
-export const checkCollision = () => {
+export const checkPlayerCollision = () => {
     for (let enemy of enemies) {
         if (player.x < enemy.x + enemy.width &&
             player.x + player.width > enemy.x &&
@@ -37,6 +38,22 @@ export const checkCollision = () => {
     }
     return false;
 };
+
+export const checkFriendCollision = () => {
+    friends.forEach((friend, friendIndex) => {
+        enemies.forEach((enemy, enemyIndex) => {
+            if (friend.x < enemy.x + enemy.width &&
+                friend.x + friend.width > enemy.x &&
+                friend.y < enemy.y + enemy.height &&
+                friend.y + friend.height > enemy.y) {
+                
+                friends.splice(friendIndex, 1);
+                enemies.splice(enemyIndex, 1);
+            }
+        });
+    });
+};
+
 
 window.addEventListener('keydown', (e) => {
     keys[e.key] = true;

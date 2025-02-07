@@ -7,6 +7,7 @@ export const player = {
     speed: 1,
     regen: false,
     regenvalue: 0,
+    allysunlocked: false,
     enemysizedebuff: 1,
     redpoints: 0,
     redpointsmult: 1,

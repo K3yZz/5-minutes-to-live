@@ -1,11 +1,12 @@
-import { setupCanvas, setupBackdrop, setupStats, drawFloor, showDebug } from './uisetup.js';
-import { drawPlayer, handleMovement, checkCollision } from './playermovement.js';
+import { setupCanvas, setupBackdrop, setupStats, drawFloor } from './uisetup.js';
+import { drawPlayer, handleMovement, checkPlayerCollision, checkFriendCollision } from './playermovement.js';
 import { drawEnemies, moveEnemies, spawnEnemies, enemies } from './enemiessetup.js';
 import { updateHealth, player, updatepoints } from './stats.js';
 import { drawSkills } from './skilltree.js';
 import { startintervals } from './interval.js';
-import { drawEvolve, incomebonus } from './evolve.js';
+import { drawEvolve, permmult } from './evolve.js';
 import { fixTabExploit } from './debug.js';
+import { drawAllies, moveAllies } from './allysetup.js';
 //*----------------------------------------------------------------------------------------------------------------
 export const canvas = setupCanvas();
 export const ctx = canvas.getContext('2d');
@@ -51,9 +52,12 @@ const update = () => {
     drawEnemies();
     moveEnemies();
     //
+    drawAllies();
+    moveAllies();
+    //
     updateHealth();
     //
-    if (checkCollision()) {
+    if (checkPlayerCollision() || checkFriendCollision()) {
         return;
     }
 };
@@ -78,8 +82,6 @@ export function startGame(type) {
     player.health = player.maxhealth;
     player.x = 275;
     player.y = 275;
-    player.redpointsmult *= incomebonus;
-    player.bluepointsmult *= incomebonus;
     //
     spaceandtime.enemycount = 0;
     //
@@ -95,8 +97,8 @@ export function startGame(type) {
         player.health = player.maxhealth;
         player.redpoints = 0;
         player.bluepoints = 0;
-        player.redpointsmult = 1;
-        player.bluepointsmult = 1;
+        player.redpointsmult = 1 * permmult;
+        player.bluepointsmult = 1 * permmult;
         player.regen = false;
         player.regenvalue = 0;
         player.speed = 1;
@@ -105,6 +107,7 @@ export function startGame(type) {
         player.enemysizedebuff = 1;
         const backdrop = document.getElementById('backdrop');
         backdrop.style.backgroundColor = 'rgba(245, 3, 3, 0.5)';
+        backdrop.style.backgroundImage = '';
         updatepoints();
         updateHealth();
     }
