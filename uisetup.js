@@ -72,7 +72,7 @@ export function setupStats() {
     versiondisplay.style.fontSize = '24px';
     versiondisplay.style.zIndex = 100;
     //! MAKE SURE TO CHANGE
-    versiondisplay.innerText = 'V1.4.0';
+    versiondisplay.innerText = 'V1.4.1';
     //! MAKE SURE TO CHANGE
     //
     redpoints.style.position = 'absolute';
