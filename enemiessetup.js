@@ -93,10 +93,7 @@ export const drawEnemies = () => {
 // Move all enemies
 export const moveEnemies = () => {
     enemies.forEach(enemy => {
-        const playerCenterX = player.x + player.width / 2;
-        const playerCenterY = player.y + player.height / 2;
-
-        enemy.x += enemy.x < playerCenterX ? enemy.speed : -enemy.speed;
-        enemy.y += enemy.y < playerCenterY ? enemy.speed : -enemy.speed;
+        enemy.x += player.x < enemy.x ? -enemy.speed : enemy.speed;
+        enemy.y += player.y < enemy.y ? -enemy.speed : enemy.speed;
     });
 };
