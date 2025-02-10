@@ -18,7 +18,6 @@ export const player = {
     y: 275,
     width: 50,
     height: 50,
-    color: 'black',
 };
 
 const { timer, healthdisplay, redpoints, bluepoints, bluepointimg, evolvepoints, evolvepointsimg } = setupStats();

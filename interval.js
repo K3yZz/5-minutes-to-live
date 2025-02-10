@@ -41,7 +41,7 @@ export function startintervals() {
 
             Redenemy = setInterval(() => {
                 if(!spaceandtime.isPaused && !spaceandtime.offtab) {
-                    spawnEnemies(1, "red");
+                    spawnEnemies(1, "1");
                     spaceandtime.enemycount += 1;
                     player.redpoints += 1 * player.redpointsmult;
                     updatepoints();
@@ -53,7 +53,7 @@ export function startintervals() {
     // Blue Enemy
     Blueenemy = setInterval(() => {
         if (!spaceandtime.isPaused && spaceandtime.time <= 250 && !spaceandtime.offtab) {
-            spawnEnemies(1, "blue");
+            spawnEnemies(1, "2");
             spaceandtime.enemycount += 1;
             player.bluepoints += 1 * player.bluepointsmult;
             updatepoints();
@@ -63,7 +63,7 @@ export function startintervals() {
     // Yellow Enemy
     Yellowenemy = setInterval(() => {
         if (!spaceandtime.isPaused && spaceandtime.time <= 200 && !spaceandtime.offtab) {
-            spawnEnemies(1, "yellow");
+            spawnEnemies(1, "3");
             spaceandtime.enemycount += 1;
         }
     }, spaceandtime.spawnrate * 3);
@@ -71,14 +71,14 @@ export function startintervals() {
     // Orange Enemy
     Orangeenemy = setInterval(() => {
         if (!spaceandtime.isPaused && spaceandtime.time <= 150 && !spaceandtime.offtab) {
-            spawnEnemies(1, "orange");
+            spawnEnemies(1, "4");
             spaceandtime.enemycount += 1;
         }
     }, spaceandtime.spawnrate * 4);
 
     Greenenemy = setInterval(() => {
         if (!spaceandtime.isPaused && spaceandtime.time <= 100 && !spaceandtime.offtab) {
-            spawnEnemies(1, "green");
+            spawnEnemies(1, "5");
             spaceandtime.enemycount += 1;
         }
     }, spaceandtime.spawnrate * 5);

@@ -46,20 +46,19 @@ export const drawSkills = () => {
         }
         if (skill.timesbought < skill.max) {
             if (player.redpoints >= skill.cost && skill.costtype == "Red points") {
-                button.style.borderColor = "green";
+                button.style.border = "2px solid green";
             } else if (player.bluepoints >= skill.cost && skill.costtype == "Blue points") {
-                button.style.borderColor = "green";
-            } else if (skill.timesbought >= skill.max) {
-                button.style.borderColor = "gold";
+                button.style.border = "2px solid green";
             } else {
-                button.style.borderColor = "white";
+                button.style.border = "2px solid white";
             }
+        } else if (skill.timesbought >= skill.max) {
+            button.style.border = "2px solid gold";
         }
         //
         button.style.width = "100px";
         button.style.height = "100px";
         button.style.backgroundColor = "#3C3D37";
-        button.style.border = "2px solid";
         button.style.borderRadius = "20px";
         button.style.color = "white";
         button.style.fontSize = "16px";

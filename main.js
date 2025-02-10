@@ -91,7 +91,7 @@ export function startGame(type) {
     runGame();
     //
     enemies.splice(0, enemies.length);
-    spawnEnemies(5, "red");
+    spawnEnemies(5, "1");
     spaceandtime.enemycount += 5;
     if (type == "evolve") {
         player.maxhealth = 3;

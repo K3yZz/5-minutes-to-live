@@ -33,31 +33,37 @@ export const spawnEnemies = (num, type) => {
         let width = 25;
         let height = 25;
         let damage = 1;
+        let color = "";
         switch (type) {
-            case "red":
+            case "1":
                 speed = .5;
+                color = "#f54242";
                 break;
-            case "blue":
+            case "2":
                 speed = 2;
                 damage = 0.5;
+                color = "#f58a42";
                 break;
-            case "yellow":
+            case "3":
                 speed = 2.5;
                 width = 35;
                 height = 35;
                 damage = 0.25; 
+                color = "#eff542";
                 break;
-            case "orange":
+            case "4":
                 speed = .3;
                 width = 50;
                 height = 50;
                 damage = 2;
+                color = "#42f581";
                 break;
-            case "green":
+            case "5":
                 speed = 0.1;
                 width = 70;
                 height = 70;
                 damage = 3;
+                color = "#5142f5";
                 break;
             }
 
@@ -66,7 +72,7 @@ export const spawnEnemies = (num, type) => {
             y: y,
             width: width * player.enemysizedebuff,
             height: height * player.enemysizedebuff,
-            color: type,
+            color: color,
             speed: speed,
             damage: damage
         });
@@ -87,7 +93,10 @@ export const drawEnemies = () => {
 // Move all enemies
 export const moveEnemies = () => {
     enemies.forEach(enemy => {
-        enemy.x += player.x < enemy.x ? -enemy.speed : enemy.speed;
-        enemy.y += player.y < enemy.y ? -enemy.speed : enemy.speed;
+        const playerCenterX = player.x + player.width / 2;
+        const playerCenterY = player.y + player.height / 2;
+
+        enemy.x += enemy.x < playerCenterX ? enemy.speed : -enemy.speed;
+        enemy.y += enemy.y < playerCenterY ? enemy.speed : -enemy.speed;
     });
 };
