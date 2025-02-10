@@ -1,7 +1,7 @@
 import { updateHealth, player, updatepoints } from "./stats.js";
 import { canvas, ctx, startGame } from "./main.js";
 
-const traits = [
+export const traits = [
     { name: "2x income", cost: 1, value: 1, max: 1, timesbought: 0, description: "2x blue and red points" },
     { name: "Allies", cost: 2, value: 1, max: 1, timesbought: 0, description: "Spawn allies every 5 seconds to defend you"},
 ];

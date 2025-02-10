@@ -1,5 +1,4 @@
 import { spaceandtime, runGame, rungameframe } from './main.js';
-import { player } from './stats.js';
 import { showDebug } from './uisetup.js';
 
 setInterval(() => {
@@ -8,13 +7,12 @@ setInterval(() => {
     }
 }, 1000);
 
-let fps, fpsInterval, startTime, now, then, elapsed;
+let fps, fpsInterval, now, then, elapsed;
 export const currentfps = 0;
 
 function startFPSCounter() {
     fpsInterval = 1000 / 60;
     then = Date.now();
-    startTime = then;
     fps = 0;
 
     function tick() {

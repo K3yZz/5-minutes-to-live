@@ -22,7 +22,7 @@ export function setupBackdrop() {
     backdrop.style.width = '100vw';
     backdrop.style.height = '100vh';
     backdrop.style.position = 'fixed';
-    backdrop.style.backgroundColor = 'rgba(245, 3, 3, 0.5)';
+    backdrop.style.backgroundColor = 'rgb(60, 58, 58)';
     backdrop.style.top = 0;
     backdrop.style.left = 0;
     backdrop.style.zIndex = -20;
@@ -72,7 +72,7 @@ export function setupStats() {
     versiondisplay.style.fontSize = '24px';
     versiondisplay.style.zIndex = 100;
     //! MAKE SURE TO CHANGE
-    versiondisplay.innerText = 'V1.4.1';
+    versiondisplay.innerText = 'V1.5.1';
     //! MAKE SURE TO CHANGE
     //
     redpoints.style.position = 'absolute';

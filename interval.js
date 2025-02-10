@@ -2,6 +2,7 @@ import { spaceandtime, gameOver } from "./main.js";
 import { player, updateTimer, updatepoints } from "./stats.js";
 import { spawnEnemies } from "./enemiessetup.js";
 import { spawnAllies } from "./allysetup.js";
+import { save } from "./save.js";
 
 let Redenemy, Blueenemy, Yellowenemy, Orangeenemy, Greenenemy;
 let friendlyally;
@@ -25,6 +26,11 @@ export function startintervals() {
         if (!spaceandtime.isPaused && player.regen && !spaceandtime.offtab) {
             player.health += Math.min(player.regenvalue, player.maxhealth - player.health);
         }
+    }, spaceandtime.second);
+
+    // Save
+    setInterval(() => {
+        save();
     }, spaceandtime.second);
 
     // Red Enemy

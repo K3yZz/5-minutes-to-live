@@ -1,7 +1,7 @@
 import { player, updatepoints, updateHealth } from "./stats.js";
 import { canvas, ctx, startGame } from "./main.js";
 
-const skills = [ 
+export const skills = [ 
     {name: "Health", costtype: "Red points", cost: 10, baseprice: 10, value: 1, max: 12, locked: false, timesbought: 0, description: "Increases your health by 1"},
     {name: "Speed", costtype: "Red points", cost: 15, baseprice: 15, value: 1, max: 10, locked: false, timesbought: 0, description: "Increases your speed by 1"},
     {name: "-Size", costtype: "Red points", cost: 50, baseprice: 50, value: 1, max: 3, locked: false, timesbought: 0, description: "Decreases your size by 1"},
@@ -10,7 +10,6 @@ const skills = [
     {name: "Health+", costtype: "Red points", cost: 100, baseprice: 100, value: 5, max: 2, locked: true, timesbought: 0, description: "Increases your health by 5"},
     {name: "x2 Blue points", costtype: "Blue points", cost: 30, baseprice: 30, value: 1, max: 1, locked: true, timesbought: 0, description: "Doubles the amount of bluepoints you get"},
     {name: "Nerf enemies", costtype: "Blue points", cost: 50, baseprice: 50, value: 1, max: 1, locked: true, timesbought: 0, description: "Decrease enemy size by 15%"},
-    {name: "placeholder", costtype: "", cost: 0, baseprice: 0, value: 0, max: 0, locked: true, timesbought: 0, description: "Locked"},
 ];
 
 let canbuyred = false;
@@ -25,73 +24,82 @@ export const drawSkills = () => {
 
     skills.forEach((skill, i) => {
         const button = document.createElement("button");
+        //
+        if (skill.locked) {
+            button.style.backgroundImage = "url('assets/Lock.png')";
+            button.style.backgroundRepeat = "no-repeat";
+            button.style.backgroundSize = "contain";
+            button.style.backgroundPosition = "center";
+        } else {
+            button.innerText = skill.name;
+            button.onmouseover = () => {
+            button.style.fontSize = "12px";
+            button.style.backgroundColor = "#697565";
+            button.innerText = `${skill.cost} ${skill.costtype}\n${skill.description}\n${skill.timesbought}/${skill.max}`;
+            }
+            button.onmouseout = () => {
+            button.style.fontSize = "16px";
+            button.style.backgroundColor = "#3C3D37";
+            button.innerText = skill.name;
+            }
+            button.onclick = () => purchaseSkill(skill);
+        }
+        if (skill.timesbought < skill.max) {
+            if (player.redpoints >= skill.cost && skill.costtype == "Red points") {
+                button.style.borderColor = "green";
+            } else if (player.bluepoints >= skill.cost && skill.costtype == "Blue points") {
+                button.style.borderColor = "green";
+            } else if (skill.timesbought >= skill.max) {
+                button.style.borderColor = "gold";
+            } else {
+                button.style.borderColor = "white";
+            }
+        }
+        //
         button.style.width = "100px";
         button.style.height = "100px";
         button.style.backgroundColor = "#3C3D37";
         button.style.border = "2px solid";
-        if (skill.locked) {
-            button.style.display = "none";
-        }
-        if (skill.timesbought < skill.max) {
-            if (player.redpoints >= skill.cost && skill.costtype == "Red points") {
-            button.style.borderColor = "green";
-            } else if (player.bluepoints >= skill.cost && skill.costtype == "Blue points") {
-                button.style.borderColor = "green";
-            }
-        }
-        if (skill.timesbought >= skill.max) {
-            button.style.borderColor = "gold";
-        } else {
-            button.style.borderColor = "white";
-        }
         button.style.borderRadius = "20px";
         button.style.color = "white";
         button.style.fontSize = "16px";
         button.style.fontFamily = "MONOFONT";
-        button.innerText = skill.name;
-
-        button.onmouseover = () => {
-            button.style.fontSize = "12px";
-            button.style.backgroundColor = "#697565";
-            button.innerText = `${skill.cost} ${skill.costtype}\n${skill.description}\n${skill.timesbought}/${skill.max}`;
-        }
-        button.onmouseout = () => {
-            button.style.fontSize = "16px";
-            button.style.backgroundColor = "#3C3D37";
-            button.innerText = skill.name;
-        }
-        button.onclick = () => purchaseSkill(skill);
         button.style.position = "absolute";
         button.style.top = `${100 + Math.floor(i / 5) * 120}px`;
         button.style.left = `calc(50% - 300px + ${(i % 5) * 120}px)`;
         button.style.margin = "10px";
         button.className = "skilltree-button";
+        //
         document.body.appendChild(button);
-
     });
+
+
     const play = document.createElement("button");
-        play.innerText = "Play";
-        play.onclick = () => startGame();
-        play.style.position = "absolute";
-        play.style.left = "50%";
-        play.style.top = "75%";
-        play.style.transform = "translate(-50%, -50%)";
-        play.style.width = "100px";
-        play.style.height = "50px";
-        play.style.border = "2px solid white";
-        play.style.borderRadius = "20px";
-        play.style.color = "white";
-        play.style.fontSize = "24px";
-        play.style.fontFamily = "MONOFONT";
+    //
+    play.innerText = "Play";
+    play.style.position = "absolute";
+    play.style.left = "50%";
+    play.style.top = "75%";
+    play.style.transform = "translate(-50%, -50%)";
+    play.style.width = "100px";
+    play.style.height = "50px";
+    play.style.border = "2px solid white";
+    play.style.borderRadius = "20px";
+    play.style.color = "white";
+    play.style.fontSize = "24px";
+    play.style.fontFamily = "MONOFONT";
+    play.style.backgroundColor = "#3C3D37";
+    play.className = "skilltree-button";
+    //
+    play.onmouseover = () => {
+        play.style.backgroundColor = "#697565";
+    };
+    play.onmouseout = () => {
         play.style.backgroundColor = "#3C3D37";
-        play.onmouseover = () => {
-            play.style.backgroundColor = "#697565";
-        };
-        play.onmouseout = () => {
-            play.style.backgroundColor = "#3C3D37";
-        };
-        play.className = "skilltree-button";
-        document.body.appendChild(play);
+    };
+    play.onclick = () => startGame();
+    //
+    document.body.appendChild(play);
 
 };
 

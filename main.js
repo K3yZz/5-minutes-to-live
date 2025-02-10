@@ -7,6 +7,7 @@ import { startintervals } from './interval.js';
 import { drawEvolve, permmult } from './evolve.js';
 import { fixTabExploit } from './debug.js';
 import { drawAllies, moveAllies } from './allysetup.js';
+import { load } from './save.js';
 //*----------------------------------------------------------------------------------------------------------------
 export const canvas = setupCanvas();
 export const ctx = canvas.getContext('2d');
@@ -114,7 +115,7 @@ export function startGame(type) {
             }
         });
         const backdrop = document.getElementById('backdrop');
-        backdrop.style.backgroundColor = 'rgba(245, 3, 3, 0.5)';
+        backdrop.style.backgroundColor = 'rgb(60, 58, 58)';
         backdrop.style.backgroundImage = '';
         updatepoints();
         updateHealth();
@@ -134,3 +135,5 @@ export function gameOver(type) {
     }
 }
 //*----------------------------------------------------------------------------------------------------------------
+
+load();
