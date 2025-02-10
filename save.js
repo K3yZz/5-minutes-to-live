@@ -7,9 +7,20 @@ export function save() {
     //*save player
     localStorage.setItem("player", JSON.stringify(player));
     //*save skills
-    localStorage.setItem("skills", JSON.stringify(skills));
+    const savedSkills = skills.map(skill => ({
+        name: skill.name,
+        cost: skill.cost,
+        timesbought: skill.timesbought,
+        locked: skill.locked
+    }));
+    localStorage.setItem("skills", JSON.stringify(savedSkills));
     //*save traits
-    localStorage.setItem("traits", JSON.stringify(traits));
+    const savedTraits = traits.map(trait => ({
+        name: trait.name,
+        cost: trait.cost,
+        timesbought: trait.timesbought
+    }));
+    localStorage.setItem("traits", JSON.stringify(savedTraits));
 }
 
 export function load() {
@@ -24,33 +35,35 @@ export function load() {
     //* Load skills data
     const savedSkills = localStorage.getItem("skills");
     if (savedSkills) {
-        const loadedSkills = JSON.parse(savedSkills);
-        
-        console.log("Loaded Skills from Storage:", loadedSkills);
-        console.log("Existing Skills in Memory:", skills);
-
-        loadedSkills.forEach((loadedSkill) => {
-            const skillIndex = skills.findIndex((s) => s.name === loadedSkill.name);
-            if (skillIndex !== -1) {
-                skills[skillIndex] = { ...skills[skillIndex], ...loadedSkill };
-            } else {
-                console.warn(`Skill ${loadedSkill.name} not found!`);
+        const parsedSkills = JSON.parse(savedSkills);
+        parsedSkills.forEach(savedSkill => {
+            const skill = skills.find(s => s.name === savedSkill.name);
+            if (skill) {
+                skill.cost = savedSkill.cost;
+                skill.timesbought = savedSkill.timesbought;
+                skill.locked = savedSkill.locked;
             }
         });
     }
+
 
     //* Load traits data
     const savedTraits = localStorage.getItem("traits");
     if (savedTraits) {
-        const loadedTraits = JSON.parse(savedTraits);
-        
-        loadedTraits.forEach((loadedTrait) => {
-            const traitIndex = traits.findIndex((t) => t.name === loadedTrait.name);
-            if (traitIndex !== -1) {
-                traits[traitIndex] = { ...traits[traitIndex], ...loadedTrait };
-            } else {
-                console.warn(`Trait ${loadedTrait.name} not found!`);
+        const parsedTraits = JSON.parse(savedTraits);
+        parsedTraits.forEach(savedTrait => {
+            const trait = traits.find(s => s.name === savedTrait.name);
+            if (trait) {
+                trait.cost = savedTrait.cost;
+                trait.timesbought = savedTrait.timesbought;
             }
         });
     }
+
+}
+
+export function reset() {
+    localStorage.removeItem("player");
+    localStorage.removeItem("skills");
+    localStorage.removeItem("traits");
 }
