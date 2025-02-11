@@ -4,12 +4,7 @@ import { spawnEnemies } from "./enemiessetup.js";
 import { spawnAllies } from "./allysetup.js";
 import { save } from "./save.js";
 
-let Redenemy, Blueenemy, Yellowenemy, Orangeenemy, Greenenemy;
-let friendlyally;
-
-
 export function startintervals() {
-
     // Timer
     setInterval(() => {
         if (!spaceandtime.isPaused && !spaceandtime.offtab) {

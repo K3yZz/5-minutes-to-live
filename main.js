@@ -12,6 +12,7 @@ import { load } from './save.js';
 export const canvas = setupCanvas();
 export const ctx = canvas.getContext('2d');
 
+
 export let spaceandtime = {
     isPaused: false,
     offtab: false,
