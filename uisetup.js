@@ -1,7 +1,6 @@
-//uisetup.js
-
 import { currentfps } from "./debug.js";
 import { canvas, ctx, spaceandtime } from "./main.js";
+import { openSettings } from "./settings.js";
 import { player } from "./stats.js";
 
 export function setupCanvas() {
@@ -41,6 +40,7 @@ export function setupStats() {
     const bluepointimg = document.createElement('img');
     const evolvepoints = document.createElement('div');
     const evolvepointsimg = document.createElement('img');
+    const settingsbutton = document.createElement('button');
     //
     healthdisplay.style.position = 'absolute';
     healthdisplay.style.top = '10px';
@@ -72,7 +72,7 @@ export function setupStats() {
     versiondisplay.style.fontSize = '24px';
     versiondisplay.style.zIndex = 100;
     //! MAKE SURE TO CHANGE
-    versiondisplay.innerText = 'V1.5.5';
+    versiondisplay.innerText = 'V1.5.6';
     //! MAKE SURE TO CHANGE
     //
     redpoints.style.position = 'absolute';
@@ -124,6 +124,27 @@ export function setupStats() {
     evolvepointsimg.height = 50;
     evolvepointsimg.style.display = 'none';
     //
+    settingsbutton.innerText = "settings";
+    settingsbutton.style.position = "absolute";
+    settingsbutton.style.left = "80%";
+    settingsbutton.style.top = "90%";
+    settingsbutton.style.transform = "translate(-50%, -50%)";
+    settingsbutton.style.width = "100px";
+    settingsbutton.style.height = "50px";
+    settingsbutton.style.border = "2px solid white";
+    settingsbutton.style.borderRadius = "20px";
+    settingsbutton.style.color = "white";
+    settingsbutton.style.fontSize = "16px";
+    settingsbutton.style.fontFamily = "MONOFONT";
+    settingsbutton.style.backgroundColor = "#3C3D37";
+    settingsbutton.onmouseover = () => {
+        settingsbutton.style.backgroundColor = "#697565";
+    };
+    settingsbutton.onmouseout = () => {
+        settingsbutton.style.backgroundColor = "#3C3D37";
+    };
+    settingsbutton.onclick = () => openSettings();
+    //
     document.body.appendChild(healthdisplay);
     document.body.appendChild(healthicon);
     document.body.appendChild(timer);
@@ -134,6 +155,7 @@ export function setupStats() {
     document.body.appendChild(bluepointimg);
     document.body.appendChild(evolvepoints);
     document.body.appendChild(evolvepointsimg);
+    document.body.appendChild(settingsbutton);
     return { timer, healthdisplay, redpoints, bluepoints, bluepointimg, evolvepoints, evolvepointsimg };
 }
 export function showDebug() {

@@ -29,22 +29,15 @@ export function startintervals() {
     }, spaceandtime.second);
 
     // Red Enemy
-    setInterval(() => {
-        if (!spaceandtime.isPaused && !spaceandtime.offtab) {
-            spaceandtime.spawnrate = Math.max(1000, spaceandtime.spawnrate - 10);
-            clearInterval(Redenemy);
-
-            Redenemy = setInterval(() => {
-                if(!spaceandtime.isPaused && !spaceandtime.offtab) {
-                    spawnEnemies(1, "1");
-                    spaceandtime.enemycount += 1;
-                    player.redpoints += 1 * player.redpointsmult;
-                    updatepoints();
-                }
-            }, spaceandtime.spawnrate);
+    Redenemy = setInterval(() => {
+        if(!spaceandtime.isPaused && !spaceandtime.offtab) {
+            spawnEnemies(1, "1");
+            spaceandtime.enemycount += 1;
+            player.redpoints += 1 * player.redpointsmult;
+            updatepoints();
         }
-    }, 10000);
-
+    }, spaceandtime.spawnrate);
+    
     // Blue Enemy
     Blueenemy = setInterval(() => {
         if (!spaceandtime.isPaused && spaceandtime.time <= 250 && !spaceandtime.offtab) {

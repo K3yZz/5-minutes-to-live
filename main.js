@@ -8,6 +8,7 @@ import { drawEvolve, permmult } from './evolve.js';
 import { fixTabExploit } from './debug.js';
 import { drawAllies, moveAllies } from './allysetup.js';
 import { load } from './save.js';
+import { drawSettings } from './settings.js';
 //*----------------------------------------------------------------------------------------------------------------
 export const canvas = setupCanvas();
 export const ctx = canvas.getContext('2d');
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     startGame();
     setupBackdrop();
     setupStats();
+    drawSettings();
     startintervals();
 });
 

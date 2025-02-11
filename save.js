@@ -35,4 +35,5 @@ export function resetGame() {
     localStorage.removeItem("player");
     localStorage.removeItem("skills");
     localStorage.removeItem("traits");
+    location.reload();
 }
