@@ -71,7 +71,7 @@ export function setupStats() {
     versiondisplay.style.color = 'white';
     versiondisplay.style.fontSize = '24px';
     versiondisplay.style.zIndex = 100;
-    versiondisplay.innerText = `${spaceandtime.versionmajor}.${spaceandtime.versionminor}.${spaceandtime.versionpatches}`;
+    versiondisplay.innerText = "1.5.7";
     //
     redpoints.style.position = 'absolute';
     redpoints.style.top = '40px';
