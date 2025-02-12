@@ -65,6 +65,12 @@ export const spawnEnemies = (num, type) => {
                 damage = 3;
                 color = "#5142f5";
                 break;
+            case "6":
+                speed = 6;
+                width = 20;
+                height = 20;
+                damage = 0.01;
+                color = "#e342f5";
             }
 
         enemies.push({

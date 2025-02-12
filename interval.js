@@ -29,7 +29,7 @@ export function startintervals() {
     }, spaceandtime.second);
 
     // Red Enemy
-    Redenemy = setInterval(() => {
+    setInterval(() => {
         if(!spaceandtime.isPaused && !spaceandtime.offtab) {
             spawnEnemies(1, "1");
             spaceandtime.enemycount += 1;
@@ -38,8 +38,8 @@ export function startintervals() {
         }
     }, spaceandtime.spawnrate);
     
-    // Blue Enemy
-    Blueenemy = setInterval(() => {
+    // orange Enemy
+    setInterval(() => {
         if (!spaceandtime.isPaused && spaceandtime.time <= 250 && !spaceandtime.offtab) {
             spawnEnemies(1, "2");
             spaceandtime.enemycount += 1;
@@ -49,29 +49,39 @@ export function startintervals() {
     }, spaceandtime.spawnrate * 2);
 
     // Yellow Enemy
-    Yellowenemy = setInterval(() => {
+    setInterval(() => {
         if (!spaceandtime.isPaused && spaceandtime.time <= 200 && !spaceandtime.offtab) {
             spawnEnemies(1, "3");
             spaceandtime.enemycount += 1;
         }
     }, spaceandtime.spawnrate * 3);
 
-    // Orange Enemy
-    Orangeenemy = setInterval(() => {
+    // green Enemy
+    setInterval(() => {
         if (!spaceandtime.isPaused && spaceandtime.time <= 150 && !spaceandtime.offtab) {
             spawnEnemies(1, "4");
             spaceandtime.enemycount += 1;
         }
     }, spaceandtime.spawnrate * 4);
 
-    Greenenemy = setInterval(() => {
+    //blue
+    setInterval(() => {
         if (!spaceandtime.isPaused && spaceandtime.time <= 100 && !spaceandtime.offtab) {
             spawnEnemies(1, "5");
             spaceandtime.enemycount += 1;
         }
     }, spaceandtime.spawnrate * 5);
 
-    friendlyally = setInterval(() => {
+    //purple
+    setInterval(() => {
+        if (!spaceandtime.isPaused && spaceandtime.time <= 30 && !spaceandtime.offtab) {
+            spawnEnemies(1, "6");
+            spaceandtime.enemycount += 1;
+        }
+    }, spaceandtime.spawnrate * 0.2);
+
+    //allys
+    setInterval(() => {
         if (player.allysunlocked && !spaceandtime.isPaused && !spaceandtime.offtab) {
             spawnAllies(1, "red");
         }

@@ -4,6 +4,7 @@ import { canvas, ctx, startGame } from "./main.js";
 export const traits = [
     { name: "2x income", cost: 1, value: 1, max: 1, timesbought: 0, description: "2x blue and red points" },
     { name: "Allies", cost: 2, value: 1, max: 1, timesbought: 0, description: "Spawn allies every 5 seconds to defend you"},
+    { name: "Bigger Box", cost: 2, value: 1, max: 3, timesbought: 0, description: "Makes box longer"},
 ];
 
 export const drawEvolve = () => {
@@ -103,6 +104,9 @@ export function purchaseTrait(trait) {
                 break;
             case "Allies":
                 player.allysunlocked = true;
+                break;
+            case "Bigger Box":
+                canvas.width += 100;
                 break;
             default:
                 break;
