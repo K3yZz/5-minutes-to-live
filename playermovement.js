@@ -6,7 +6,7 @@ import { friends } from './allysetup.js';
 export const keys = {};
 
 export const drawPlayer = () => {
-    ctx.fillStyle = "red";
+    ctx.fillStyle = "darkred";
     ctx.fillRect(player.x, player.y, player.width, player.height);
     ctx.strokeStyle = 'white';
     ctx.lineWidth = .5;

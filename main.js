@@ -23,6 +23,9 @@ export let spaceandtime = {
     spawnrate: 3500,
     enemycount: 0,
     debug: false,
+    versionmajor: 1,
+    versionminor: 5,
+    versionpatches: 7,
 };
 
 document.addEventListener('DOMContentLoaded', (event) => {
